@@ -55,6 +55,6 @@ public class PowerAttackSequence extends BattleSequence {
     @Override
     protected void postAttackAction() {
         int recoil = (int) (attacker.getStats().maxHealth() * 0.1);
-        attacker.takeDamage(recoil);
+        attacker.setHealth(attacker.getStats().health() - recoil);
     }
 }
