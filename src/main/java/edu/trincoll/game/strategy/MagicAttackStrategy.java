@@ -6,7 +6,7 @@ import edu.trincoll.game.model.Character;
  * Magic attack - uses mana and attack power to calculate damage.
  * Used by Mages.
  *
- * TODO 1b: Implement calculateDamage()
+ * TODO 1b: Implement calculateDamage() -AJ
  *
  * Requirements:
  * - Base damage = attacker's attack power
@@ -25,6 +25,10 @@ public class MagicAttackStrategy implements AttackStrategy {
     @Override
     public int calculateDamage(Character attacker, Character target) {
         // TODO 1b: Implement magic attack calculation
-        throw new UnsupportedOperationException("TODO 1b: Implement magic attack calculation");
+        int attackPower = attacker.getStats().attackPower();
+        int mana = attacker.getStats().mana();
+        int totalDamage = attackPower + (mana / 10);
+        attacker.useMana(10);
+        return totalDamage;
     }
 }

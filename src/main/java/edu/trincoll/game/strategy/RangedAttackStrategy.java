@@ -6,7 +6,7 @@ import edu.trincoll.game.model.Character;
  * Ranged attack - physical damage with accuracy modifier.
  * Used by Archers.
  *
- * TODO 1c: Implement calculateDamage()
+ * TODO 1c: Implement calculateDamage() -AJ
  *
  * Requirements:
  * - Base damage = attacker's attack power
@@ -31,6 +31,10 @@ public class RangedAttackStrategy implements AttackStrategy {
     @Override
     public int calculateDamage(Character attacker, Character target) {
         // TODO 1c: Implement ranged attack with critical hit logic
-        throw new UnsupportedOperationException("TODO 1c: Implement ranged attack calculation");
+        double damage = attacker.getStats().attackPower() * 0.8;
+        if(target.getStats().health() < (target.getStats().maxHealth() * 0.3)){
+            damage *= 1.5;
+        }
+        return (int) damage;
     }
 }

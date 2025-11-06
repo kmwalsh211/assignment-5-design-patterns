@@ -6,7 +6,7 @@ import edu.trincoll.game.model.Character;
  * Melee attack - straightforward physical damage based on attack power.
  * Used by Warriors and Rogues.
  *
- * TODO 1a: Implement calculateDamage()
+ * TODO 1a: Implement calculateDamage() -AJ
  *
  * Requirements:
  * - Base damage = attacker's attack power
@@ -22,6 +22,8 @@ public class MeleeAttackStrategy implements AttackStrategy {
     @Override
     public int calculateDamage(Character attacker, Character target) {
         // TODO 1a: Implement melee attack calculation
-        throw new UnsupportedOperationException("TODO 1a: Implement melee attack calculation");
+        int attackPower = attacker.getStats().attackPower();
+        double damage = attackPower * 1.2;
+        return (int) damage;
     }
 }

@@ -6,7 +6,7 @@ import edu.trincoll.game.model.Character;
  * Heavy armor defense - better damage reduction than standard.
  * Used by Warriors.
  *
- * TODO 1e: Implement calculateDamageReduction()
+ * TODO 1e: Implement calculateDamageReduction() -AJ
  *
  * Requirements:
  * - Calculate damage reduction: defense (full defense value)
@@ -28,6 +28,9 @@ public class HeavyArmorDefenseStrategy implements DefenseStrategy {
     @Override
     public int calculateDamageReduction(Character defender, int incomingDamage) {
         // TODO 1e: Implement heavy armor defense with cap
-        throw new UnsupportedOperationException("TODO 1e: Implement heavy armor defense calculation");
+        int defense = defender.getStats().defense();
+        int reducedDamage = incomingDamage - defense;
+        double minimumDamage = incomingDamage * 0.25;
+        return (int) Math.max(reducedDamage, minimumDamage);
     }
 }

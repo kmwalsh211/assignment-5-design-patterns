@@ -6,7 +6,7 @@ import edu.trincoll.game.model.Character;
  * Standard defense - reduces damage by a percentage of defense stat.
  * Used by most character types.
  *
- * TODO 1d: Implement calculateDamageReduction()
+ * TODO 1d: Implement calculateDamageReduction() -AJ
  *
  * Requirements:
  * - Calculate damage reduction: defense / 2
@@ -22,6 +22,9 @@ public class StandardDefenseStrategy implements DefenseStrategy {
     @Override
     public int calculateDamageReduction(Character defender, int incomingDamage) {
         // TODO 1d: Implement standard defense calculation
-        throw new UnsupportedOperationException("TODO 1d: Implement standard defense calculation");
+        int defense = defender.getStats().defense();
+        int reduction = defense / 2;
+        int actualDamage = incomingDamage - reduction;
+        return Math.max(0, actualDamage);
     }
 }
