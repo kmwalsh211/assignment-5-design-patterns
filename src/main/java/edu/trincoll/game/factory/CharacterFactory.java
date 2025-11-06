@@ -15,7 +15,7 @@ import edu.trincoll.game.strategy.*;
 public class CharacterFactory {
 
     /**
-     * TODO 2a: Implement createWarrior()
+     * TODO 2a: Implement createWarrior() - Kayla
      *
      * Create a Warrior character with:
      * - Type: WARRIOR
@@ -30,7 +30,15 @@ public class CharacterFactory {
      */
     public static Character createWarrior(String name) {
         // TODO 2a: Implement warrior creation
-        throw new UnsupportedOperationException("TODO 2a: Implement createWarrior()");
+        Character warrior = Character.builder()
+                .name(name)
+                .type(CharacterType.WARRIOR)
+                .stats(CharacterStats.create(150, 40, 30, 0))
+                .attackStrategy(new MeleeAttackStrategy())
+                .defenseStrategy(new HeavyArmorDefenseStrategy())
+                .build();
+
+        return warrior;
     }
 
     /**
@@ -47,7 +55,15 @@ public class CharacterFactory {
      */
     public static Character createMage(String name) {
         // TODO 2b: Implement mage creation
-        throw new UnsupportedOperationException("TODO 2b: Implement createMage()");
+        Character mage = Character.builder()
+                .name(name)
+                .type(CharacterType.MAGE)
+                .stats(CharacterStats.create(80, 60, 10, 100))
+                .attackStrategy(new MagicAttackStrategy())
+                .defenseStrategy(new StandardDefenseStrategy())
+                .build();
+
+        return mage;
     }
 
     /**
@@ -64,7 +80,15 @@ public class CharacterFactory {
      */
     public static Character createArcher(String name) {
         // TODO 2c: Implement archer creation
-        throw new UnsupportedOperationException("TODO 2c: Implement createArcher()");
+        Character archer = Character.builder()
+                .name(name)
+                .type(CharacterType.ARCHER)
+                .stats(CharacterStats.create(100, 50, 15, 20))
+                .attackStrategy(new RangedAttackStrategy())
+                .defenseStrategy(new StandardDefenseStrategy())
+                .build();
+
+        return archer;
     }
 
     /**
@@ -81,7 +105,15 @@ public class CharacterFactory {
      */
     public static Character createRogue(String name) {
         // TODO 2d: Implement rogue creation
-        throw new UnsupportedOperationException("TODO 2d: Implement createRogue()");
+        Character rogue = Character.builder()
+                .name(name)
+                .type(CharacterType.ROGUE)
+                .stats(CharacterStats.create(90, 55, 20, 30))
+                .attackStrategy(new MeleeAttackStrategy())
+                .defenseStrategy(new StandardDefenseStrategy())
+                .build();
+
+        return rogue;
     }
 
     /**
@@ -101,6 +133,15 @@ public class CharacterFactory {
      */
     public static Character createCharacter(String name, CharacterType type) {
         // TODO 2e: Implement factory method with switch expression
-        throw new UnsupportedOperationException("TODO 2e: Implement createCharacter()");
+        if (type == null) {
+            throw new IllegalArgumentException("Character type cannot be null.");
+        }
+
+        return switch (type) {
+            case WARRIOR -> createWarrior(name);
+            case MAGE -> createMage(name);
+            case ARCHER -> createArcher(name);
+            case ROGUE -> createRogue(name);
+        };
     }
 }
