@@ -5,7 +5,7 @@ import edu.trincoll.game.model.Character;
 /**
  * Command to execute an attack from one character to another.
  *
- * TODO 4a: Implement execute() and undo()
+ * TODO 4a: Implement execute() and undo() (DONE I THINK)
  *
  * Requirements for execute():
  * 1. Calculate damage: attacker.attack(target)
@@ -31,14 +31,17 @@ public class AttackCommand implements GameCommand {
 
     @Override
     public void execute() {
-        // TODO 4a: Implement attack execution
-        throw new UnsupportedOperationException("TODO 4a: Implement AttackCommand.execute()");
+        // Calculate damage using attacker logic, apply to target, and remember it for undo
+        this.damageDealt = attacker.attack(target);
+        target.takeDamage(damageDealt);
     }
 
     @Override
     public void undo() {
-        // TODO 4a: Implement attack undo
-        throw new UnsupportedOperationException("TODO 4a: Implement AttackCommand.undo()");
+        // Undo by healing back exactly the damage that was dealt
+        if (damageDealt > 0) {
+            target.heal(damageDealt);
+        }
     }
 
     @Override
