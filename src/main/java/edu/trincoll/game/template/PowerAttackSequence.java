@@ -26,8 +26,7 @@ public class PowerAttackSequence extends BattleSequence {
      */
     @Override
     protected void preAttackAction() {
-        // TODO 5c: Implement power-up
-        throw new UnsupportedOperationException("TODO 5c: Implement PowerAttackSequence.preAttackAction()");
+        damageBonus = attacker.getStats().attackPower();
     }
 
     /**
@@ -40,8 +39,8 @@ public class PowerAttackSequence extends BattleSequence {
      */
     @Override
     protected void performAttack() {
-        // TODO 5c: Implement powered attack
-        throw new UnsupportedOperationException("TODO 5c: Implement PowerAttackSequence.performAttack()");
+        int baseDamage = attacker.attack(defender);
+        defender.takeDamage(baseDamage + damageBonus);
     }
 
     /**
@@ -55,7 +54,7 @@ public class PowerAttackSequence extends BattleSequence {
      */
     @Override
     protected void postAttackAction() {
-        // TODO 5c: Implement recoil damage
-        throw new UnsupportedOperationException("TODO 5c: Implement PowerAttackSequence.postAttackAction()");
+        int recoil = (int) (attacker.getStats().maxHealth() * 0.1);
+        attacker.takeDamage(recoil);
     }
 }
